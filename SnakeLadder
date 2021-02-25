@@ -1,0 +1,136 @@
+import java.util.Scanner;
+
+public class SnakeLadder
+{
+	private String name; //Player names
+	private int pos=1; //Initial possition
+	
+	int getCurrentPosition()
+	{
+		return this.pos;
+	}
+	
+	public SnakeLadder(String name) //Constructor to initialize player name
+	{
+		this.name=name;
+	}
+	
+	public void play(int position)
+	{
+		this.pos=position+this.pos;
+		SnakeAndAldder();
+	}
+	
+	public void SnakeAndAldder()
+	{
+		for(int i=0; i<30; i++)
+		{	
+			if(this.pos==30)
+			{
+				System.out.println("Winner is "+this.name);
+				break;		
+			}
+			
+			else if(this.pos==5) //Ladder1
+			{
+				this.pos=this.pos+5;//Ladder at 5 and incrememnt by 5
+				continue;
+			}
+			
+			else if(this.pos==11) //Ladder2
+			{
+				this.pos=this.pos+15;//Ladder at 11 and incrememnt by 15 player at 26
+				continue;
+			}
+			
+			else if(this.pos==11) //Ladder2
+			{
+				this.pos=this.pos+15;//Ladder at 11 and incrememnt by 15 player at 26
+				continue;
+			}
+			
+			else if(this.pos==17) //Snake1
+			{
+				this.pos=this.pos-13; // At postion 17 snake and decrement to pos 4
+				continue;
+			}
+			
+			else if(this.pos==21) //Snake2
+			{
+				this.pos=this.pos-10; // At postion 21 snake and decrement to pos 10
+				continue;
+			}
+			
+			else if(this.pos==30) //If position is 30 Game over
+			{
+					System.out.println("Game is Finished");
+					break;	
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+	}
+
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int position;
+		
+		SnakeLadder player1=new SnakeLadder("Vaibhav"); //Player 1
+		SnakeLadder player2=new SnakeLadder("Akash"); //Player 2
+		
+		
+		
+		System.out.println("Game Rule : Player please enter number between 1 to 6 \n");
+		int choice;
+		
+		do
+		{
+			System.out.println("1.Vaibhav \n2.Akash \n0.Exit");
+			choice=sc.nextInt();
+			switch(choice)
+			{
+				case 1:
+					System.out.println("Vaibhav please roll a dice");
+					position=sc.nextInt();
+					
+					if(position>=1 || position<=6)
+					{
+						player1.play(position);
+						break;
+					}
+					else
+					{
+						System.out.println("ohh please enter number between 1 to 6");
+						break;
+					}
+					
+				case 2:
+					System.out.println("Akash please roll a dice");
+					position=sc.nextInt();
+					
+					if(position>=1 || position<=6)
+					{
+						player2.play(position);
+						break;
+					}
+					else
+					{
+						System.out.println("ohh please enter number between 1 to 6");
+						break;
+					}
+					
+				case 0:
+					break;
+			}
+			
+		}while(choice!=0);
+		
+		System.out.println("Vaibhav current position "+player1.getCurrentPosition()); //current position of player 1
+		System.out.println("Akash current position "+player2.getCurrentPosition()); //current position of player 2
+	}
+	
+}
